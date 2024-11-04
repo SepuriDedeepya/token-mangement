@@ -1,0 +1,56 @@
+<!-- Form for capturing project details -->
+ <h4>Project Details</h4>
+<form #projectForm="ngForm" (submit)="onSubmit(projectForm.value)" class="project-box" #projectForm1="ngForm">
+  <table>
+    <tr>
+      <th><label for="projectName">Project Name:</label></th>
+      <td>
+        <input 
+          id="projectName" 
+          name="projectName" 
+          ngModel 
+          required 
+          minlength="4" 
+          #projectName="ngModel" 
+        />
+        <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
+          <small *ngIf="projectName.errors?.['required']">Project Name is required.</small>
+          <small *ngIf="projectName.errors?.['minlength']">Project Name must be at least 4 characters long.</small>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="projectDescription">Project Description:</label></th>
+      <td>
+        <textarea 
+          id="projectDescription" 
+          name="projectDescription" 
+          ngModel 
+          required 
+          minlength="5" 
+          #projectDescription="ngModel" 
+        ></textarea>
+        <div *ngIf="projectDescription.invalid && (projectDescription.dirty || projectDescription.touched)">
+          <small *ngIf="projectDescription.errors?.['required']">Project Description is required.</small>
+          <small *ngIf="projectDescription.errors?.['minlength']">Project Description must be at least 5 characters long.</small>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <button type="submit" [disabled]="projectForm.invalid">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<div>
+  <button (click)="goToProjectManager()" class="back-button">Back</button>
+</div>
+
+<div class="response-message">
+  <h3>{{ responseMessage }}</h3>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,108 @@
+.back-button {
+  background-color: #007bff; 
+  color: #ffffff; 
+  padding: 5px 17px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  position: absolute; 
+  left: 44px;
+  top: 553px;
+  text-decoration: none; 
+}
+
+.back-button:hover {
+  background-color: #0056b3; 
+}
+
+.project-table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.project-table-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 80%;
+  max-width: 6000px;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.1); 
+  text-align: center;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+thead {
+  background-color: rgba(0, 0, 0, 0.2); 
+  color: #333;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05); 
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.delete-button {
+  background-color: #ff4d4d; 
+  color: white; 
+  border: none;
+  padding: 8px 16px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.delete-button:hover {
+  background-color: #e60000; 
+}
+
+.delete-button:active {
+  background-color: #cc0000;
+  transform: scale(0.98);
+}
+
+
+.assign-button {
+  background-color: #7369f8;
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  font-size: 14px; 
+  border-radius: 4px;
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.assign-button:hover {
+  background-color: #1e0d7c; 
+}
+
+.assign-button:active {
+  background-color: #25054e;
+  transform: scale(0.98); 
+}
+
+.scrollable-checkbox-list {
+  max-height: 50px;
+  overflow-y: auto; 
+  border: 1px solid #ccc; 
+  padding: 8px;
+  width: 75%;
+}

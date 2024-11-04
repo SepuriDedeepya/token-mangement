@@ -1,0 +1,39 @@
+<div class="employee-table-container">
+  <h4>Employees:</h4>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  
+  <table *ngIf="employees.length">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Phone No</th>
+        <th>Email</th>
+        <th>Action</th>
+        <!-- Add more fields as per your EmployeeDTO model -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.employeeName}}</td>
+        <td>{{ employee.employeeDesignation }}</td>
+        <td>{{ employee.employeePhoneno}}</td>
+        <td>{{ employee.employeeEmail}}</td>
+        <td><button (click)="deleteEmployee(employee.employeeId)" class="delete-button">Delete</button></td>
+        <!-- Add more fields as per your EmployeeDTO model -->
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="goToProjectManager()" class="back-button">Back</button>
+    </div>
+    <div>
+      {{responsemsg}}
+    </div>
+
+  <p *ngIf="!employees.length && !errorMessage">No employees found.</p>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

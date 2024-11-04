@@ -1,0 +1,53 @@
+<div class="admin-container">
+  <button class="menu-toggle" *ngIf="!isSideMenuOpen" (click)="toggleSideMenu()">☰ Open Menu</button>
+
+<!-- Sliding side menu -->
+<div class="side-menu" [class.open]="isSideMenuOpen">
+  <button class="close-btn Login" (click)="toggleSideMenu()">×</button>
+  <!-- Add your side menu content here -->
+
+    <h3>Menu</h3>
+    <button class="hi" (click)="GoToCreateProject()">Create Project</button>
+    <button  class="hi" (click)="GoToCreateEmployee()">Create Employee</button>
+    <button  class="hi" (click)="GoToAssignProject()">Assign Project</button>
+    <button  class="hi" (click)="GoToShowProject()">Show Project</button>
+    <button  class="hi" (click)="GoToShowEmployee()">Show Employee</button>
+    <button  class="hi" (click)="GoToShowTicket()">Ticket Details</button>
+    <button  class="logout-button" (click)="GoTologout()">Logout</button>
+  </div>
+  <!-- Main content area -->
+  <div class="content-area">
+    <div class="container">
+      <div class="project-manager-box">
+          <h2>Project Manager</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Field</th>
+                      <th>Details</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>ID</td>
+                      <td>{{ projectManager?.organisationId}}</td>
+                  </tr>
+                  <tr>
+                      <td>Name</td>
+                      <td>{{ projectManager?.projectManagerName}}</td>
+                  </tr>
+                  <tr>
+                      <td>Password</td>
+                      <td>{{ projectManager?.projectManagerPassword }}</td>
+                  </tr>
+              </tbody>
+          </table>
+          
+      </div>
+      
+  </div>
+</div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>

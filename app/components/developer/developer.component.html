@@ -1,0 +1,159 @@
+  <div class="employee-container">
+      <button class="menu-toggle" *ngIf="!isMenuOpen" (click)="toggleMenu()">☰</button>
+    
+      <!-- Side Menu with Buttons -->
+      <div class="side-menu" [class.open]="isMenuOpen">
+        <button class="close-btn Login" (click)="toggleMenu()">×</button>
+        <h3>Menu</h3>
+        <button  class="hi" (click)="showAssignedProjects()">Show Assigned Projects</button>
+        <button class="hi" (click)="showAssignedTickets()">Show Assigned Tickets</button>
+        <!--<button class="hi" (click)="showCompletedProjects()">Show Completed Projects</button>-->
+        <button class="hi" (click)="showCompletedTickets()">Show Completed Tickets</button>
+        <button class="hii" (click)="logout()">Logout</button>
+      </div>
+  
+    <!-- Main Content -->
+    <div class="main-content" *ngIf="!isMenuOpen">
+      <div id="welcome">
+        <h1 >Welcome To Developer's Profile</h1>
+      </div>
+        <div class="employee-details" *ngIf="employeeDetails">
+          <p><strong>Employee ID:</strong> {{ employeeDetails.employeeId }}</p>
+          <p><strong>Name:</strong> {{ employeeDetails.employeeName }}</p>
+          <p><strong>Designation:</strong> {{ employeeDetails. employeeDesignation }}</p>
+          <p><strong>Email:</strong> {{ employeeDetails.employeeEmail }}</p>
+          <p><strong>Number:</strong>{{ employeeDetails.employeePhoneno }}</p>
+          <!-- Add other fields as necessary -->
+        </div>
+  
+      <div *ngIf="errorMessage" style="color: red;">
+        <p>{{ errorMessage }}</p>
+      </div>
+  
+      <div *ngIf="!employeeDetails && !errorMessage">
+        <p>Please wait while we fetch your details...</p>
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Assigned Projects Section -->
+<div class="assigned-projects" *ngIf="assignedProject && isAssignedProjects && isMenuOpen">
+  <h2>Assigned Project</h2>
+  <table>
+      <thead>
+          <tr>
+              <th>Project ID</th>
+              <th>Project Name</th>
+              <th>Action</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{ assignedProject.projectId }}</td>
+              <td>{{ assignedProject.projectName }}</td>
+              <td>
+                  <!-- <select [(ngModel)]="assignedProject.action" (change)="onStatusChange(assignedProject)">
+                      <option *ngFor="let key of statusKeys | keyvalue" [value]="key.key">
+                          {{ key.value }}
+                      </option>
+                  </select> -->
+                    <select [(ngModel)]="assignedProject.action" (ngModelChange)="selectedStatus = $event">
+                      <option *ngFor="let option of getFilteredStatusOptions()" [value]="option.key">
+                        {{ option.value }}
+                      </option>
+                    </select>
+              </td>
+              <td>
+                  <button (click)="updateProjectStatus(employeeDetails.employeeId,selectedStatus)">Update Status</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+<div class="left-align-text" *ngIf="errorMessage" style="color: red;">
+  <p>{{ errorMessage }}</p>
+</div>
+
+  <!-- Assigned Tickets Section -->
+  <div class="assigned-tickets" *ngIf="isAssignedTickets && assignedTickets.length > 0 && isMenuOpen">
+    <h2>Assigned Ticket</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket ID</th>
+          <th>Ticket Name</th>
+          <th>Status</th>
+          <th>Update</th>
+          <th>Lastly Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of assignedTickets">
+          <td>{{ ticket.ticketId }}</td>
+          <td>{{ ticket.ticketName }}</td>
+          <td>
+            <select [(ngModel)]="ticket.status" (change)="onStatusChange(ticket)">
+              <option *ngFor="let option of getFilteredStatusOption(ticket.status)" [value]="option.key">
+                {{ option.value }}
+              </option>
+            </select>
+          </td>
+         <td> <ng-container *ngIf="ticket.status === 1; else showUpdatedDate">
+            Not Updated
+        </ng-container>
+        <ng-template #showUpdatedDate>
+            {{ ticket.ticketUpdatedDate  }}
+        </ng-template></td>
+          <td>
+            <button (click)="updateTicketStatus(ticket)">Update Status</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="left-align-text" *ngIf="assignedTickets && assignedTickets.length === 0 && isAssignedTickets && isMenuOpen">
+  <p>No tickets assigned.</p>
+</div>
+
+<div class="completed-tickets" *ngIf="isCompletedTickets&& completedTickets.length > 0 && isMenuOpen">
+  <h2>Completed Tickets</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Ticket Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of completedTickets">
+        <td>{{ ticket.ticketId }}</td>
+        <td>{{ ticket.ticketName }}</td>
+        <td>Completed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Message if no completed tickets are available -->
+<div class="left-align-text" *ngIf="completedTickets.length === 0 && isCompletedTickets && isMenuOpen">
+  <p>No completed tickets available.</p>
+</div>
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+      <h3>Enter Estimated Days</h3>
+      <input type="number" [(ngModel)]="estimatedDaysInput" placeholder="Enter days" />
+      <div class="modal-buttons">
+          <button (click)="closeModal()">Back</button>
+          <button (click)="saveEstimatedDays()">Save</button>
+      </div>
+  </div>
+</div>
+
+

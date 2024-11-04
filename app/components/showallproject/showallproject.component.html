@@ -1,0 +1,59 @@
+<div class="project-table-container">
+  <h4>Projects:</h4>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <table *ngIf="projects.length">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Created Date</th>
+        <th>Action</th> 
+        <th>Testers</th>
+        <th>Assign</th>
+        <!-- Add more fields if necessary -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{ project.projectName }}</td>
+        <td>{{ project.projectDescription}}</td>
+        <td>{{ project.creationDate | date: 'yyyy-MM-dd ' }}</td>
+
+        <td><button (click)="DeleteProject(project.projectId)" class="delete-button">Delete</button></td>
+        
+        <td>
+          <div class="scrollable-checkbox-list">
+            <!-- Checkbox list for employees -->
+            <label *ngFor="let emp of allEmployees">
+              <input 
+                type="checkbox" 
+                [value]="emp.employeeId" 
+                (change)="onEmployeeSelect($event, emp)"
+              />
+              {{ emp.employeeName }}
+            </label>
+          </div>
+        </td>
+
+        <td><button (click)="AssignProject(project.projectId,selectedEmployees)" class="assign-button">Assign</button>
+        </td>
+        
+        <!-- Add more fields if necessary -->
+      </tr>
+    </tbody>
+  </table>
+  <div>
+  <button (click)="goToProjectManager()" class="back-button">Back</button>
+  </div>
+  <div>
+    <h4>{{responsemsg}}</h4>
+    <h3>{{ responseMessage }}</h3>
+  </div>
+  <div>
+  <p *ngIf="!projects.length && !errorMessage">No projects found.</p>
+</div>
+<div>
+    <router-outlet></router-outlet>
+  </div>

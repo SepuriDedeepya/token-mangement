@@ -1,0 +1,162 @@
+<div class="admin-container">
+  <button class="menu-toggle" *ngIf="!isSideMenuOpen" (click)="toggleSideMenu()">☰</button>
+
+  <div class="side-menu" [class.open]="isSideMenuOpen">
+    <button class="close-btn Login" (click)="toggleSideMenu()">×</button>
+    <h3>Menu</h3>
+    <button class="hi" (click)="handleAdminAction('show')">Show Projects</button>
+    <button class="hi" (click)="handleAdminAction('assign')">Assign Ticket</button>
+    <button class="hi" (click)="handleAdminAction('manage')">Manage Tickets</button>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+
+
+
+  <!-- //fetch all Projects -->
+  <div *ngIf="isShowingProjects" class="projects-list">
+    <table class="table">
+      <thead class="p-thead">
+        <tr>
+          <th>Project ID</th>
+          <th>Project Name</th>
+          <th>Description</th>
+          <th>Create Ticket</th>
+        </tr>
+      </thead>
+      <tbody class="p-tbody">
+        <tr *ngFor="let project of projects">
+          <td>{{ project.projectId }}</td>
+          <td>{{ project.projectName }}</td>
+          <td>{{ project.projectDescription }}</td>
+          <td><button (click)="openCreationForm(project.projectId)"> Raise Ticket </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+   
+
+
+
+  <!-- employee-profile.component.html -->
+  <div *ngIf="showProfile" class="profile-tester">
+    <div *ngIf="employeeData">
+      <h2>Employee Profile</h2>
+      <p><strong>ID:</strong> {{ employeeData.employeeId }}</p>
+      <p><strong>Name:</strong> {{ employeeData.employeeName }}</p>
+      <p><strong>Designation:</strong> {{ employeeData.employeeDesignation }}</p>
+      <p><strong>Email:</strong> {{ employeeData.employeeEmail }}</p>
+      <p><strong>Phone Number:</strong> {{ employeeData.employeePhoneno }}</p>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div *ngIf="isCreatingTicket" class="ticketCreation">
+    <form [formGroup]="createTicketForm" (ngSubmit)="onSubmit()">
+      <label for="ticketName">Ticket Name:</label>
+      <input id="ticketName" formControlName="ticketName" required>
+
+      <label for="ticketDescription">Ticket Description:</label>
+      <textarea id="ticketDescription" formControlName="ticketDescription" required></textarea>
+
+      <button type="submit">Create Ticket</button>
+      <button type="button" (click)="toggleSideMenu()">Cancel</button>
+    </form>
+  </div>
+
+
+
+  <!-- src/app/tester/tester.component.html -->
+  <div class="assign">
+    <div *ngIf="isAssigningTicket">
+      <h2>Assign Ticket</h2>
+      <div class="table-container">
+        <table class="assignn">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Ticket Name</th>
+              <th>Ticket Description</th>
+              <th><label for="developer">Select Developer</label></th>
+              <th>Assign</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of tickets">
+              <td>{{ ticket.ticketId }}</td>
+              <td>{{ ticket.ticketName }}</td>
+              <td>{{ ticket.ticketDescription }}</td>
+              <td> <select name="employeeid" ngModel #employeeid="ngModel"  required>
+                  <option value="" disabled>Select a developer</option>
+                  <option *ngFor="let developer of developerrs" [value]="developer.employeeId">
+                    {{ developer.employeeName }} (ID: {{ developer.employeeId }})
+                  </option>
+                </select>
+              </td>
+              <td>
+                <button (click)="assignTicket(ticket.ticketId,employeeid.value)">Assign</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- managing tickets -->
+  <div class="manage">
+    <div class="table-container" *ngIf="isManagingTicket">
+      <table class="managetickets" id="m">
+        <thead>
+          <tr>
+            <th>Ticket Id</th>
+            <th>Ticket Name</th>
+            <th>Description</th>
+            <th>Assigned To</th>
+            <th>Created Date</th>
+            <th>Status</th>
+            <th>Actions</th> <!-- Added column for actions -->
+          </tr>
+        </thead>
+        <div class="table-body">
+          <tbody>
+            <tr *ngFor="let ticket of tickets">
+              <td>{{ ticket.ticketId }}</td>
+              <td>{{ ticket.ticketName }}</td>
+              <td>{{ ticket.ticketDescription }}</td>
+              <td>{{ ticket.ticketAssignTo || 'Not assigned' }}</td>
+              <td>{{ ticket.ticketCreatedDate || 'Unknown' }}</td>
+              <td>
+                <ng-container *ngIf="ticket.status === 1">
+                  <i class="bi bi-balloon-fill status-red"></i> <!-- Red for status 1 -->
+                </ng-container>
+                <ng-container *ngIf="ticket.status === 2">
+                  <i class="bi bi-balloon-fill status-orange"></i> <!-- Orange for status 2 -->
+                </ng-container>
+                <ng-container *ngIf="ticket.status === 3 || ticket.status === 4">
+                  <i class="bi bi-balloon-fill status-yellow"></i> <!-- Yellow for status 3 or 4 -->
+                </ng-container>
+                <ng-container *ngIf="ticket.status === 5">
+                  <i class="bi bi-balloon-fill status-green"></i> <!-- Green for status 5 -->
+                </ng-container>
+                
+                <span *ngIf="ticket.status === undefined">No status</span>
+              </td>
+              <td>
+                <button (click)="deleteTicket(ticket.ticketId)" class="btn btn-danger" [disabled]="ticket.status !== 5">
+                  Delete
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </div>
+      </table>
+    </div>
+  </div>

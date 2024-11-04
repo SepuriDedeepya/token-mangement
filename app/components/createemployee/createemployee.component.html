@@ -1,0 +1,102 @@
+<!-- Form for capturing project details -->
+<h3>Fill The Employee Details</h3>
+<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)" class="employee-box">
+
+  <table>
+    <tr>
+      <th><label for="employeeName">Name:</label></th>
+      <td>
+        <input
+          id="employeeName"
+          name="employeeName"
+          ngModel
+          required
+          minlength="4"
+        />
+        <div *ngIf="employeeForm.controls['employeeName']?.invalid && employeeForm.controls['employeeName']?.touched">
+          <small *ngIf="employeeForm.controls['employeeName']?.errors?.['required']">Name is required.</small>
+          <small *ngIf="employeeForm.controls['employeeName']?.errors?.['minlength']">Name must be at least 4 characters.</small>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="employeeDesignation">Designation:</label></th>
+      <td>
+        <select id="employeeDesignation" name="employeeDesignation" ngModel required>
+          <option value="">Select Designation</option>
+          <option value="developer">Developer</option>
+          <option value="tester">Tester</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="employeePhoneno">Phone No:</label></th>
+      <td>
+        <input
+          type="text"
+          id="employeePhoneno"
+          name="employeePhoneno"
+          ngModel
+          required
+          minlength="10"
+          maxlength="10"
+          pattern="^[0-9]*$"  
+        />
+        <div *ngIf="employeeForm.controls['employeePhoneno']?.invalid && employeeForm.controls['employeePhoneno']?.touched">
+          <small *ngIf="employeeForm.controls['employeePhoneno']?.errors?.['required']">Phone number is required.</small>
+          <small *ngIf="employeeForm.controls['employeePhoneno']?.errors?.['minlength']">Phone number must be exactly 10 digits.</small>
+          <small *ngIf="employeeForm.controls['employeePhoneno']?.errors?.['maxlength']">Phone number must be exactly 10 digits.</small>
+          <small *ngIf="employeeForm.controls['employeePhoneno']?.errors?.['pattern']">Phone number must be numeric.</small>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="employeeEmail">Email:</label></th>
+      <td>
+        <input
+          type="email"
+          id="employeeEmail"
+          name="employeeEmail"
+          ngModel
+          required
+          email
+        />
+        <div *ngIf="employeeForm.controls['employeeEmail']?.invalid && employeeForm.controls['employeeEmail']?.touched">
+          <small *ngIf="employeeForm.controls['employeeEmail']?.errors?.['required']">Email is required.</small>
+          <small *ngIf="employeeForm.controls['employeeEmail']?.errors?.['email']">Email must be valid (must contain ).</small>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th><label for="employeePassword">Password:</label></th>
+      <td>
+        <input
+          type="password"
+          id="employeePassword"
+          name="employeePassword"
+          ngModel
+          required
+        />
+      </td>
+    </tr>
+
+
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <button type="submit" [disabled]="employeeForm.invalid">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
+<div>
+  <button (click)="goToProjectManager()" class="back-button">Back</button>
+</div>
+
+<!-- Display the submitted project details -->
+<div class="response-message">
+  <h3>{{ responseMessage }}</h3>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

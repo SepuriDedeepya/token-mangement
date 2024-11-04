@@ -1,0 +1,113 @@
+/* Center the form container */
+.form-container {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 20px; 
+}
+
+form {
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  justify-content: center;   
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 6000px;
+}
+
+table td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+
+th {
+  font-weight: bold; /* Makes the text bold */
+  text-align: left; /* Aligns the text to the left (change to center or right if needed) */
+  padding: 10px; /* Adds padding for better spacing */
+  background-color: #f2f2f2; /* Optional: adds a background color for better visibility */
+  
+}
+
+/* Styling for the project details box */
+.project-box {
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  padding: 20px;
+  margin-top: 50px;
+  justify-content:center;
+  margin-left:38%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  max-width: 400px;
+  max-height: 8000px;
+}
+.response-message {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.back-button {
+  background-color: #007bff; /* Blue background */
+  color: #ffffff; /* White text color */
+  padding: 5px 17px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  position: absolute; /* Positions it on the left side */
+  left: 44px;
+  top: 553px; /* Adjust as needed */
+  text-decoration: none; /* Remove underline for button-like appearance */
+}
+
+.back-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+.bottom-image {
+  position: absolute; /* Position it relative to the container */
+  bottom: 50px; /* Aligns to the bottom */
+  left: 40%; /* Center horizontally */
+  top: 450px;
+  transform: translateX(-50%); /* Adjusts to center */
+}
+
+
+
+.right-image {
+  position: absolute; /* Position it relative to the container */
+  top: 50%; /* Aligns to the center vertically */
+  left:79%;
+  right: 0; /* Aligns to the right */
+  transform: translateY(-50%); /* Adjusts to center */
+}
+
+button {
+  background-color: #125985; /* Light blue background */
+  color: white; /* Text color */
+  border: none; /* Removes default border */
+  padding: 10px 20px; /* Padding for better size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  font-size: 16px; /* Adjusts font size */
+}
+
+button:hover {
+  background-color: #87cefa; /* Slightly darker blue on hover */
+}
+
+h4{
+text-align: center;
+color: #0e0d0d;
+margin-top:20px;
+}

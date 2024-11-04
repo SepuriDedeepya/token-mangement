@@ -1,0 +1,20 @@
+<form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="ticketName">Ticket Name</label>
+      <input id="ticketName" name="ticketName" [(ngModel)]="ticketName" required />
+      <div *ngIf="ticketForm.submitted && !ticketName">
+        <small>Ticket Name is required.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="ticketDescription">Ticket Description</label>
+      <textarea id="ticketDescription" name="ticketDescription" [(ngModel)]="ticketDescription" required></textarea>
+      <div *ngIf="ticketForm.submitted && !ticketDescription">
+        <small>Ticket Description is required.</small>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="!ticketForm.valid">Submit</button>
+  </form>
+  

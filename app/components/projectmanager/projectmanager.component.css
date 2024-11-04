@@ -1,0 +1,187 @@
+/* Main container */
+.admin-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-left: -2%;
+}
+
+/* Toggle button */
+.menu-toggle {
+  position: fixed;
+  top: 120px;
+  left: 68px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s;
+}
+
+.menu-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* Side menu */
+.side-menu {
+  position: fixed;
+  left: -300px;
+  top: 108;
+  width: 250px;
+  height: 100%;
+  background-color: #004d99;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.side-menu .hi {
+  background-color: #007bff;
+  color: white;
+  padding: 13px;
+  margin-bottom: 10px;
+  width: 70%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.Login {
+  background-color: #007bff;
+  color: white;
+  padding: 3px 15px;
+  margin-bottom: 10px;
+  width: 13%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.side-menu button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.content-area {
+  /* background-image: linear-gradient(to right, #a8c0ff, #f5d6a6), url('../../../assets/project.jpeg');
+  background-size: cover; */
+  background-position: center; 
+  flex-grow: 1;
+  padding: 20px;
+   background: linear-gradient(to right, #a8c0ff, #f5d6a6); 
+  /* background-size: cover; */
+  margin-left: 60px;
+  transition: margin-left 0.3s ease;
+}
+
+.admin-container .side-menu.open + .content-area {
+  margin-left: 0; /* Adjust this width to match the side menu */
+}
+.container {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  height: 50%;
+  
+}
+
+.project-manager-box {
+  background-color: rgba(161, 188, 247, 0.8);
+  border: 1px solid #6268ff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Adjust width as needed */
+  text-align: left;
+  
+}
+
+h2 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+table {
+  width: 100%; /* Full width of the box */
+  border-collapse: collapse; /* Remove space between borders */
+}
+
+th, td {
+  padding: 10px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+  /* border-bottom: 1px solid #ddd; Bottom border for rows */
+}
+
+th {
+  background-color: #f2f2f2; /* Light grey background for headers */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+.bottom-image {
+  position: absolute; /* Position it relative to the container */
+  bottom: 50px; /* Aligns to the bottom */
+  left: 30%; /* Center horizontally */
+  top: 310px;
+  transform: translateX(-50%); /* Adjusts to center */
+}
+
+
+
+.right-image {
+  position: absolute; /* Position it relative to the container */
+  top: 50%; /* Aligns to the center vertically */
+  left:79%;
+  right: 0; /* Aligns to the right */
+  transform: translateY(-50%); /* Adjusts to center */
+}
+
+
+
+.side-menu .logout-button {
+  background-color: #007bff;
+  color: white;
+  padding: 13px;
+  margin-top: 55px;
+  width: 35%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}

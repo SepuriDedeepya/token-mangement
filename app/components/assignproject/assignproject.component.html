@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h4>Assign Project to Employees</h4>
+
+  <form (submit)="onSubmit(assignForm.value)" #assignForm="ngForm">
+    <table>
+      <tr>
+        <th>Select Project:</th>
+    <td>
+      <select  name="projectId" [(ngModel)]="selectedProjectId"   required>
+        <option value="" disabled selected>Select an project</option> <!-- Placeholder option -->
+        <option *ngFor="let proj of allProject" [value]="proj.projectId">{{ proj.projectName}}</option>
+    </select>
+    </td>
+      </tr>
+      <tr >
+        <!-- <th>Employees:</th>
+        <td>
+            <select  required>
+                <option value="" disabled selected>Select an employee</option>  Placeholder option 
+                <option *ngFor="let emp of allEmployees" [value]="emp.employeeId">{{ emp.employeeName}}</option>
+            </select>
+        </td> -->
+        <th>Select Employees:</th>
+<td>
+  <div class="scrollable-checkbox-list">
+    <!-- Checkbox list for employees -->
+    <label *ngFor="let emp of allEmployees">
+      <input 
+        type="checkbox" 
+        [value]="emp.employeeId" 
+        (change)="onEmployeeSelect($event, emp)"
+      />
+      {{ emp.employeeName }}
+    </label>
+  </div>
+</td>
+    </tr>
+    <tr>
+    <td colspan="2" style="text-align: center;">
+      <button type="submit">Submit</button>
+    </td>
+  </tr>
+    </table>
+    
+  </form>
+  <div>
+    <button (click)="goToProjectManager()" class="back-button">Back</button>
+    </div>
+
+  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

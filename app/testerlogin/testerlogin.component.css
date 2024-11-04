@@ -1,0 +1,84 @@
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+.form-group {
+    /* margin-bottom: 15px;
+    text-align: left; */
+    margin-bottom: 1rem;
+}
+.col-form-label {
+    text-align: left; /* Ensures labels are aligned to the left */
+  }
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 70%;
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.login-message {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.login-message.success {
+    color: green;
+}
+
+.login-message.error {
+    color: red;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+ .input-group {
+    width: 70%;
+}
+.password-wrapper .input-group .form-control {
+    border-right: 0;
+}
+.password-wrapper .input-group .input-group-text {
+    background: none;
+    border-left: 0;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.password-wrapper .input-group .bi {
+    font-size: 1.2rem;
+}

@@ -1,0 +1,52 @@
+
+<div class="d-flex justify-content-center align-items-center HeaderContainer">
+    <div class="card">
+      <div class="CardHead">
+        <div class="row MenuContainer">
+          <div style="padding-top: 10px; text-align: left;">
+            <!-- Hamburger Icon for Toggle Menu -->
+            <span (click)="toggleMenu()" class="bi bi-list" style="cursor: pointer; font-size: 24px;"></span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Sliding Side Menu -->
+      <div class="side-menu" [class.open]="menuVisible">
+        <button class="close-btn" (click)="toggleMenu()">×</button>
+        <h3>Menu</h3>
+        <br>
+        <span routerLink="/home" class="bi bi-house"> Home</span>
+        <br>
+        <br>
+        <span routerLink="/PmLogin" class="bi bi-person-check"> Project Manager</span>
+        <br>
+        <br>
+        <span routerLink="/developerlogin" class="bi bi-code-slash"> Developer</span>
+        <br>
+        <br>
+        <span routerLink="/testerlogin" class="bi bi-window"> Tester</span>
+      </div>
+  
+      <div class="CardFooter row">
+        <div class="col FooterLeft">
+          <div class="FooterLeft1">Streamline Your Workflow</div>
+          <div class="FooterLeft2">An intuitive system for tracking, prioritizing, and resolving project issues and tasks.</div>
+          <div class="FooterLeft3">Ticket Management</div>
+        </div>
+        <div class="main-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+ 
+
+ 
+
+
+
+    

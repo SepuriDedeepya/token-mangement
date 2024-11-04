@@ -1,0 +1,50 @@
+.MainContainer{
+  width: 100%;
+  height: 97vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;  
+  justify-content:flex-start;
+  box-sizing:border-box; 
+
+  background:linear-gradient(to right, hsl(210.86deg 86.42% 68.24%), hsl(24.1deg 76.47% 70%));
+}
+.ContainerHead{
+  margin-top: 10px;
+  background-color: white;
+  width: 99%;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.HeaderSubHeading{
+  margin-top: 5px;
+  margin-left: 20px;
+  color: rgb(12 63 65);
+}
+.HeaderSubHeading span{
+  margin-right: 20px;
+}
+.menu-footer {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  
+  padding: 10px; 
+  color: rgb(12, 63, 65); 
+}
+
+.language {
+  margin-left: auto; 
+  text-align: right; 
+}
+.HeaderContainer {
+background-color: transparent;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}

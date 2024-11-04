@@ -1,0 +1,59 @@
+<div class="ticket-table-container">
+  <h4>Tickets:</h4>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <table *ngIf="tickets.length">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Assign To</th>
+        <th>Created Date</th>
+        <th>Updated Date</th>
+        <th>Estimate Time(Days)</th>
+        <th>Status</th>
+        <!-- Add more fields if necessary -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ ticket.ticketName }}</td>
+        <td>{{ ticket.ticketDescription}}</td>
+        <td>{{ ticket.ticketAssignTo}}</td>
+        <td>{{ ticket.ticketCreatedDate}}</td>
+        <td>{{ ticket.ticketUpdatedDate}}</td>
+        <td>{{ ticket.ticketEstimatedTime}}</td>
+        <td>
+          <span
+          [ngClass]="{
+            'status-blue': ticket.status === 1,
+            'status-orange': ticket.status === 2 || ticket.status === 3 || ticket.status === 4,
+            'status-green': ticket.status === 5
+          }"
+          class="status-badge"
+        >
+        <ng-container [ngSwitch]="ticket.status">
+          <span *ngSwitchCase="1">Assign</span>
+    <span *ngSwitchCase="2">Processing</span>
+    <span *ngSwitchCase="3">Processing</span>
+    <span *ngSwitchCase="4">Processing</span>
+    <span *ngSwitchCase="5">Completed</span>
+          <span *ngSwitchDefault>Unknown</span>
+        </ng-container>
+        </span>
+          </td>
+        <!-- Add more fields if necessary -->
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="goToProjectManager()" class="back-button">Back</button>
+    </div>
+
+  <p *ngIf="!tickets.length && !errorMessage">No tickets found.</p>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+
